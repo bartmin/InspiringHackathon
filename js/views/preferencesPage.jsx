@@ -1,39 +1,37 @@
-var Description = React.createClass({
+var ProfileImage = React.createClass({
     render: function() {
+        var image = (this.props.image == null) ? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" : this.props.image;
         return (
-            <div className="row text-center">
-                <header>
-                    <h3>Analiza Twojego profilu przebiegła pomyślnie.<br />
-                    Możesz teraz edytować wyniki analizy.</h3>
-                </header>
+            <div className="col-md-12">
+                <img src={image} alt="Profile image" className="img-rounded img-responsive" />
             </div>
         );
     }
 });
 
-var Slider = React.createClass({
+var UserForm = React.createClass({
     render: function() {
+        var user = (this.props.userData != null) ? this.props.userData : {
+            WYKSZTALCENIE: "",
+            KLIENT_ID: "",
+            POSIADA_NIERUCHOMOSC: "",
+            TYP_DOCHODU: "",
+            name: ""
+        };
+
+
         return (
-            <div className="slider row">
-                <div className="magic-box">
-                    <label for={this.props.id}>{this.props.label}</label><br />
-                    <span style={{float:"left"}}><small>Tak</small></span>
-                    <span style={{float:"right"}}><small>Nie</small></span>
+            <div className="col-md-12 user-description">
+                <h4>{user.name}</h4>
+                <p>
+                    <b>Wykształcenie:</b> {user.WYKSZTALCENIE}
                     <br />
-                    <input type="range" min="1" max="4" step="1" id={this.props.id} />
-                </div>
-            </div>
-        );
-    }
-});
-
-var SliderContainer = React.createClass({
-    render: function() {
-        return (
-            <div class="slider-container row">
-                <Slider label="Oszczędny" id="oszczedny" />
-                <Slider label="Obieżyświat" id="obiezyswiat" />
-                <Slider label="Ciepłolubność" id="cieplolubnosc" />
+                    <b>ID klienta:</b> {user.KLIENT_ID}
+                    <br />
+                    <b>Nieruchomości:</b> {user.POSIADA_NIERUCHOMOSC}
+                    <br />
+                    <b>Typ dochodu:</b> {user.TYP_DOCHODU}
+                </p>
             </div>
         );
     }
@@ -42,9 +40,9 @@ var SliderContainer = React.createClass({
 var ShowMatchesButton = React.createClass({
     render: function() {
         return (
-            <div className="row">
+            <div className="col-md-12">
                 <div className="magic-box">
-                    <button className="btn btn-primary" onClick={() => {this.props.router.switchTo('offers');}}>Pokaż wyniki</button>
+                    <button className="btn btn-primary" onClick={() => {this.props.router.switchTo('offers');}}>Pokaż oferty</button>
                 </div>
             </div>
         );
@@ -52,16 +50,21 @@ var ShowMatchesButton = React.createClass({
 });
 
 var PreferencesPage = React.createClass({
-    getInitialState: function() {
-        return {userData: this.props.userData};
-    },
-
     render: function() {
+        var image = (this.props.userData == null) ? null : this.props.userData.picture;
+        var user = (this.props.userData == null) ? null : this.props.userData;
         return (
-            <div class="md-col-12">
-                <Description />
-                <SliderContainer />
-                <ShowMatchesButton router={this.props.router} />
+            <div className="row">
+                <div className="panel panel-info">
+                    <div className="panel-heading">
+                        <h3 className="panel-title">Twój profil</h3>
+                    </div>
+                    <div className="panel-body">
+                        <ProfileImage image={image} />
+                        <UserForm userData={user} mappings={this.state.mappings} />
+                        <ShowMatchesButton router={this.props.router} />
+                    </div>
+                </div>
             </div>
         );
     }

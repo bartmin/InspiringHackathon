@@ -17,7 +17,7 @@ var MenuItem = React.createClass({
             price = "Niestety nie ma żadnych lotów na jutro";
         }
         else {
-            price = "Poleć jutro za " + this.props.flights.price + " zł";
+            price = <a href={this.props.flights.link} target="_blank">Poleć jutro za {this.props.flights.price} zł</a>;
         }
 
         return (
@@ -66,6 +66,7 @@ var OffersPage = React.createClass({
                         that.props.setOffers(data3.cheapest);
                     }
                 });
+
             }
 
             $.get('https://restcountries.eu/rest/v2/alpha',{codes: codes}, function(data2) {

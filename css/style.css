@@ -1,6 +1,7 @@
 body {
     background: url(../bg.jpg);
     background-size: cover;
+    font-family: 'Source Sans Pro'
 }
 .opis-kraju {
     width:80%;
@@ -57,7 +58,10 @@ header  {
 .magic-box {
     margin: 0 auto;
 }
-
+.magic-box button {
+    display:block;
+    margin: 0 auto;
+}
 .menu-item {
     background-size: cover;
     margin: 20px 0;
@@ -288,4 +292,45 @@ img.gallery-item {
           -webkit-transform: scale(1.0);
           transform: scale(1.0);
       }
+}
+.img-rounded {
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: block;
+    width:72px;
+    height:72px;
+
+}
+.user-description {
+
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.user-description h4 {
+
+    display: block;
+    width: 100%;
+
+}
+.panel {
+    margin: 50px auto !important;
+    background-color: rgba(39,39,39,0.7);
+    padding: 20px 50px 50px;
+    border-radius: 5px;
+    color: white;
+}
+.panel-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+
+}
+.landing-page {
+    font-family: 'Roboto';
+    font-weight: normal;
+}
+a {
+    color: white !important;
 }
