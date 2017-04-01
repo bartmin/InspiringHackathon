@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script type="text/javascript" src="./js/react.min.js"></script>
+    <script type="text/javascript" src="./js/react-dom.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/babel" src="js/views/landingPage.jsx"></script>
+    <script type="text/babel" src="js/views/preferencesPage.jsx"></script>
+    <script type="text/babel" src="js/views/offersPage.jsx"></script>
+    <script type="text/babel" src="js/views/countryPage.jsx"></script>
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+    <title>BZWBKrajozwiedzacz</title>
+</head>
+<body>
+
+<div class="container" id="react-container">
+    <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+    </div>
+</div>
+
+<script type="text/babel">
+
+    var Router = React.createClass({
+        getInitialState : function() {
+            return {
+                currentPage: LandingPage,
+                args: '',
+                offers: null,
+                userData: null
+            };
+        },
+
+        switchTo: function(page, args = null) {
+            args = (args === null) ? '' : '?' + args;
+
+            switch (page) {
+                case 'preferences':
+                    this.setState({
+                        currentPage: PreferencesPage,
+                        args: args,
+                        offers: this.state.offers
+                    });
+                    window.location.hash = "preferences" + args;
+                    break;
+                case 'offers':
+                        console.log('offers');
+                    this.setState({
+                        currentPage: OffersPage,
+                        args: args,
+                        offers: this.state.offers,
+                    });
+                    window.location.hash = "offers" + args;
+                    break;
+                case 'country':
+                    this.setState({
+                        currentPage: CountryPage,
+                        args: args,
+                        offers: this.state.offers
+                    });
+                    window.location.hash = "country" + args;
+                    break;
+                default:
+                    this.setState({
+                        currentPage: LandingPage,
+                        args: args,
+                        offers: this.state.offers
+                    });
+                    break;
+            }
+        },
+
+        setOffers: function(offers) {
+            this.setState({offers: offers});
+        },
+
+        setUserData: function(data) {
+            this.setState({
+                userData: data
+            })
+        },
+
+        render: function() {
+            var Element = this.state.currentPage;
+            return <Element router={this} args={this.state.args}
+                setUserData={(data) => {this.setUserData(data);}}
+                userData={this.state.userData}
+                setOffers={(offers) => {this.setOffers(offers);}}
+                offers={this.state.offers} />;
+        }
+    });
+    ReactDOM.render(
+            <Router />,
+            document.getElementById('react-container')
+    );
+</script>
+</body>
+</html>
