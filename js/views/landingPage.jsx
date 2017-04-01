@@ -14,9 +14,12 @@ var LandingPageHeader = React.createClass({
     }
 });
 
-var ConnectWithAccountButton = React.createClass({login: function() {
+var ConnectWithAccountButton = React.createClass({
+    login: function() {
         var that = this;
-        $.get('http://8328e27a.ngrok.io/login', { user: "user2" } ,function(data) {
+        var l = document.getElementById('login').value;
+
+        $.get('http://8328e27a.ngrok.io/login', { user: l } ,function(data) {
             that.props.setData(
                 data
             )
@@ -27,7 +30,13 @@ var ConnectWithAccountButton = React.createClass({login: function() {
     render: function() {
         return (
             <div className="row">
-                <button className="btn btn-primary btn-lg" style={{margin: "0 auto"}} onClick={() => {this.login()}}>Połącz z kontem</button>
+                <div className="row">
+                <input type="text" placeholder="Login" id="login" className="form-control" />
+                    </div>
+                <br />
+                <div className="row">
+                    <button className="btn btn-primary btn-lg" style={{margin: "0 auto"}} onClick={() => {this.login()}}>Połącz z kontem</button>
+                </div>
             </div>
         );
     }
@@ -63,6 +72,7 @@ var LandingPage = React.createClass({
             <div id="wrapper" className="landing-page">
                 <LandingPageHeader />
                 <TravelQuote />
+
                 <ConnectWithAccountButton router={this.props.router} setData={(data) => {this.setData(data)}}  />
             </div>
         );

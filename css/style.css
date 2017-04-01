@@ -4,7 +4,7 @@ body {
     font-family: 'Source Sans Pro'
 }
 .opis-kraju {
-    width:80%;
+    width:50%;
     margin: 0 auto 20px auto;
     background-color: rgba(39, 39, 39, 0.7);
     color: white;
@@ -333,4 +333,7 @@ img.gallery-item {
 }
 a {
     color: white !important;
+}
+.image-holder {
+    margin: 0 auto;
 }

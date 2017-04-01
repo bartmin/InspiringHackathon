@@ -61,7 +61,7 @@ var PreferencesPage = React.createClass({
                     </div>
                     <div className="panel-body">
                         <ProfileImage image={image} />
-                        <UserForm userData={user} mappings={this.state.mappings} />
+                        <UserForm userData={user} />
                         <ShowMatchesButton router={this.props.router} />
                     </div>
                 </div>

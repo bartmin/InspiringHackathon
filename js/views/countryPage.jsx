@@ -34,9 +34,9 @@ var Gallery = React.createClass({
 
         return (
             <div className="row">
-                <ul>
+                <div className="image-holder">
                     {new_images}
-                </ul>
+                </div>
             </div>
         );
     }
