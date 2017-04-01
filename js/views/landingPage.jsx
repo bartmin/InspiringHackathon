@@ -30,13 +30,15 @@ var ConnectWithAccountButton = React.createClass({
     render: function() {
         return (
             <div className="row">
-                <div className="row">
+                <div className="row col-md-4 col-md-offset-8" id="input">
+                    <div className="row">
                 <input type="text" placeholder="Login" id="login" className="form-control" />
                     </div>
                 <br />
                 <div className="row">
                     <button className="btn btn-primary btn-lg" style={{margin: "0 auto"}} onClick={() => {this.login()}}>Połącz z kontem</button>
                 </div>
+                    </div>
             </div>
         );
     }
@@ -47,7 +49,7 @@ var TravelQuote = React.createClass({
         return (
             <div className="travel-quote row text-center">
                 <blockquote>
-                    <p>Podróże kształcą czy chuj</p>
+                    <p>Podróże róże</p>
                     <small>Paulo Coelho</small>
                 </blockquote>
             </div>
@@ -71,8 +73,6 @@ var LandingPage = React.createClass({
         return (
             <div id="wrapper" className="landing-page">
                 <LandingPageHeader />
-                <TravelQuote />
-
                 <ConnectWithAccountButton router={this.props.router} setData={(data) => {this.setData(data)}}  />
             </div>
         );
